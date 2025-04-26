@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Меню кошачьего кафе</title>
+</head>
+<body>
+<h1>Меню</h1>
+{% for category in categories %}
+<h2>{{ category.name }}</h2>
+<ul>
+    {% for item in category.menuitem_set.all %}
+    <li>{{ item.name }} — {{ item.price }} ₽</li>
+    {% endfor %}
+</ul>
+{% endfor %}
+</body>
+</html>
