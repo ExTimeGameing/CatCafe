@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оформление заказа</title>
+    <style>
+        .order-details { margin-bottom: 30px; }
+        .cat-selector { margin: 20px 0; }
+        .cat-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cat-card.selected { border-color: #4CAF50; background: #f8fff8; }
+        .payment-methods { margin: 20px 0; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Оформление заказа</h1>
+
+    <div class="order-details">
+        <h3>Ваш заказ:</h3>
+        <ul>
+            {% for item in order.orderitem_set.all %}
+                <li>{{ item.menu_item.name }} × {{ item.quantity }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Итого: {{ order.get_total }} ₽</strong></p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Выбор котика -->
+        <div class="cat-selector">
+            <h3>Выберите котика-курьера:</h3>
+            {% for cat in cats %}
+                <div class="cat-card" onclick="selectCat(this, {{ cat.id }})">
+                    <input type="radio" name="cat_id" value="{{ cat.id }}" hidden>
+                    <h4>{{ cat.name }}</h4>
+                    <p>{{ cat.description }}</p>
+                </div>
+            {% endfor %}
+            {% if error_cat %}<div class="error">{{ error_cat }}</div>{% endif %}
+        </div>
+
+        <!-- Выбор способа оплаты -->
+        <div class="payment-methods">
+            <h3>Способ оплаты:</h3>
+            <select name="payment_method">
+                {% for value, name in payment_methods %}
+                    <option value="{{ value }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+            {% if error_payment %}<div class="error">{{ error_payment }}</div>{% endif %}
+        </div>
+
+        <!-- Ошибки -->
+        {% if error_order %}<div class="error">{{ error_order }}</div>{% endif %}
+
+        <button type="submit">Подтвердить заказ</button>
+    </form>
+
+    <script>
+        // Выбор котика
+        function selectCat(element, catId) {
+            document.querySelectorAll('.cat-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            document.querySelector(`input[value="${catId}"]`).checked = true;
+        }
+    </script>
+</body>
+</html>

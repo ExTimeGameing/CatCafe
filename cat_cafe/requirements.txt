@@ -1,0 +1,4 @@
+Django==5.2.1
+Pillow==11.2.1  # Используйте более новую версию
+python-telegram-bot==20.3  # или aiogram==3.0.0b7
+requests==2.31.0  # для HTTP-запросов

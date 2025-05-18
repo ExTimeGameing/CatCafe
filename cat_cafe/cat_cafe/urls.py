@@ -1,7 +1,8 @@
+# cat_cafe/urls.py
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('menu.urls')),  # Главная страница → menu
+    path('', include('menu.urls')),  # Подключаем URL приложения menu
 ]

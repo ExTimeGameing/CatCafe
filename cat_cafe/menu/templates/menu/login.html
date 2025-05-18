@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход в кошачье кафе</title>
+    <style>
+        .alert-success { color: green; }
+        .alert-error { color: red; }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <h1>Вход через Telegram</h1> 
+    <form method="post">
+        {% csrf_token %}
+        <div class="{% if form.telegram_login.errors %}has-error{% endif %}">
+            {{ form.telegram_login }}
+            {% for error in form.telegram_login.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+</body>
+</html>

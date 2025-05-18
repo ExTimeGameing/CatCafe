@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b1ad90a-3e32-48af-b76e-02a970063e99" name="Список изменений" comment="(feat-0): Создание базовой страницы">
-      <change afterPath="$PROJECT_DIR$/cat_cafe/menu/templates/menu/menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cat_cafe/menu/urls.py" afterDir="false" />
+    <list default="true" id="8b1ad90a-3e32-48af-b76e-02a970063e99" name="Список изменений" comment="(fix-0): Добавить Readme.md">
+      <change beforePath="$PROJECT_DIR$/.gigaide/gigaide.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gigaide/gigaide.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cat_cafe/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cat_cafe/cat_cafe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cat_cafe/cat_cafe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cat_cafe/menu/templates/menu/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/cat_cafe/menu/templates/menu/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cat_cafe/menu/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cat_cafe/menu/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +97,31 @@
       <option name="project" value="LOCAL" />
       <updated>1745662234179</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="(feat-1): Создание базовой страницы">
+      <option name="closed" value="true" />
+      <created>1745662701309</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745662701309</updated>
+    </task>
+    <task id="LOCAL-00004" summary="(fix-0): Добавить Readme.md">
+      <option name="closed" value="true" />
+      <created>1745662728800</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745662728800</updated>
+    </task>
+    <task id="LOCAL-00005" summary="(fix-0): Добавить Readme.md">
+      <option name="closed" value="true" />
+      <created>1745662812233</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745662812233</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,6 +137,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="(feat-0): Создание базовой страницы" />
-    <option name="LAST_COMMIT_MESSAGE" value="(feat-0): Создание базовой страницы" />
+    <MESSAGE value="(feat-1): Создание базовой страницы" />
+    <MESSAGE value="(fix-0): Добавить Readme.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="(fix-0): Добавить Readme.md" />
   </component>
 </project>
