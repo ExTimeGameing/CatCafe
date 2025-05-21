@@ -1,21 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Меню кошачьего кафе</title>
-    <style>
-        .order-section {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .item-card {
-            border: 1px solid #eee;
-            padding: 10px;
-            width: 200px;
-            margin: 10px;
-        }
-        .error { color: red; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 </head>
 <body>
     <h1>Меню</h1>
@@ -24,13 +13,15 @@
     <div class="order-section">
         <h3>Ваш заказ (№{{ current_order.id }})</h3>
         {% if current_order.orderitem_set.all %}
-            <ul>
-                {% for item in current_order.orderitem_set.all %}
-                    <li>{{ item.menu_item.name }} × {{ item.quantity }}</li>
-                {% endfor %}
-            </ul>
-            <p>Итого: {{ current_order.get_total }} ₽</p>
-            <a href="{% url 'menu:checkout' %}" style="background: #4CAF50; color: white; padding: 10px; text-decoration: none;">
+            <div class="order-items"> <!-- Новый контейнер для списка -->
+                <ul>
+                    {% for item in current_order.orderitem_set.all %}
+                        <li>{{ item.menu_item.name }} × {{ item.quantity }}</li>
+                    {% endfor %}
+                </ul>
+                <p>Итого: {{ current_order.get_total }} ₽</p>
+            </div>
+            <a href="{% url 'menu:checkout' %}" class="checkout-btn">
                 Перейти к оплате
             </a>
         {% else %}

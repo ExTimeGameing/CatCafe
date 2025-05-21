@@ -1,21 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Оформление заказа</title>
-    <style>
-        .order-details { margin-bottom: 30px; }
-        .cat-selector { margin: 20px 0; }
-        .cat-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .cat-card.selected { border-color: #4CAF50; background: #f8fff8; }
-        .payment-methods { margin: 20px 0; }
-        .error { color: red; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 </head>
 <body>
     <h1>Оформление заказа</h1>
@@ -36,13 +25,24 @@
         <!-- Выбор котика -->
         <div class="cat-selector">
             <h3>Выберите котика-курьера:</h3>
-            {% for cat in cats %}
-                <div class="cat-card" onclick="selectCat(this, {{ cat.id }})">
-                    <input type="radio" name="cat_id" value="{{ cat.id }}" hidden>
-                    <h4>{{ cat.name }}</h4>
-                    <p>{{ cat.description }}</p>
+            <div class="cats-carousel">
+                {% for cat in cats %}
+                <div class="cat-card" data-cat-id="{{ cat.id }}">
+                    <img src="{{ cat.image.url }}" class="cat-image" alt="{{ cat.name }}">
+                    <div class="cat-info">
+                        <h4 class="cat-name">{{ cat.name }}</h4>
+                        <p class="cat-description">{{ cat.description }}</p>
+                    </div>
+                <input 
+                    type="radio" 
+                    name="cat_id" 
+                    value="{{ cat.id }}" 
+                    id="cat_{{ cat.id }}" 
+                    class="cat-radio"
+                >
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
             {% if error_cat %}<div class="error">{{ error_cat }}</div>{% endif %}
         </div>
 
@@ -64,14 +64,41 @@
     </form>
 
     <script>
-        // Выбор котика
-        function selectCat(element, catId) {
-            document.querySelectorAll('.cat-card').forEach(card => {
-                card.classList.remove('selected');
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.cat-card');
+            const radioButtons = document.querySelectorAll('.cat-radio');
+
+            // Обработчик клика по карточке
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    const radio = this.querySelector('.cat-radio');
+                    
+                    // Снимаем выделение со всех карточек
+                    cards.forEach(c => c.classList.remove('selected'));
+                    radioButtons.forEach(rb => rb.checked = false);
+
+                    // Выделяем текущую карточку
+                    this.classList.add('selected');
+                    radio.checked = true;
+                    
+                    // Плавная прокрутка к выбранной карточке
+                    this.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                });
             });
-            element.classList.add('selected');
-            document.querySelector(`input[value="${catId}"]`).checked = true;
-        }
+
+            // Обработчик изменения радио-кнопок для синхронизации
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if(this.checked) {
+                        this.closest('.cat-card').classList.add('selected');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

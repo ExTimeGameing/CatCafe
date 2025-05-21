@@ -135,3 +135,6 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Должно быть 
 SESSION_COOKIE_SECURE = False  # Для разработки
 SESSION_COOKIE_HTTPONLY = True
 SESSION_SAVE_EVERY_REQUEST = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"

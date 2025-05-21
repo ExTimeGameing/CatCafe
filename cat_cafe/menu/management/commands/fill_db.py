@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from menu.models import Category, MenuItem, Cat, Client
+from django.core.files import File
 
 
 class Command(BaseCommand):
@@ -165,25 +166,41 @@ class Command(BaseCommand):
             category=special,
         )
 
-        # 3. Создаем всех котов
-        barsik = Cat.objects.create(
-            name="Барсик", description="Пушистый рыжий кот, любит спать на подоконнике"
-        )
-        barsik.favorite_food.set([espresso.id, tiramisu.id])
+        # 3. Создаем всех котов с изображениями
+        cats_data = [
+            {
+                "name": "Барсик",
+                "description": "Пушистый рыжий кот, любит спать на подоконнике",
+                "image": "barsik.jpg",
+                "favorite_food_ids": [espresso.id, tiramisu.id],
+            },
+            {
+                "name": "Мурка",
+                "description": "Игривая черно-белая кошка, обожает внимание",
+                "image": "murka.jpg",
+                "favorite_food_ids": [latte.id, cheesecake.id],
+            },
+            {
+                "name": "Снежок",
+                "description": "Белоснежный перс с голубыми глазами",
+                "image": "snowball.jpg",
+                "favorite_food_ids": [cappuccino.id, croissant.id],
+            },
+            {
+                "name": "Рыжик",
+                "description": "Оранжевый хулиган, всегда в движении",
+                "image": "ginger.jpg",
+                "favorite_food_ids": [raf.id, macaron.id],
+            },
+        ]
 
-        murka = Cat.objects.create(
-            name="Мурка", description="Игривая черно-белая кошка, обожает внимание"
-        )
-        murka.favorite_food.set([latte.id, cheesecake.id])
-
-        snowball = Cat.objects.create(
-            name="Снежок", description="Белоснежный перс с голубыми глазами"
-        )
-        snowball.favorite_food.set([cappuccino.id, croissant.id])
-
-        ginger = Cat.objects.create(
-            name="Рыжик", description="Оранжевый хулиган, всегда в движении"
-        )
-        ginger.favorite_food.set([raf.id, macaron.id])
+        for cat_data in cats_data:
+            with open(f'media/cats/{cat_data["image"]}', "rb") as f:
+                cat = Cat.objects.create(
+                    name=cat_data["name"],
+                    description=cat_data["description"],
+                    image=File(f, name=cat_data["image"]),
+                )
+                cat.favorite_food.set(cat_data["favorite_food_ids"])
 
         self.stdout.write(self.style.SUCCESS("✅ Все данные успешно добавлены!"))

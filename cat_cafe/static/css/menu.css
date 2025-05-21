@@ -1,0 +1,185 @@
+/* static/css/menu.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    --primary-color: #6C4AB6;
+    --secondary-color: #8D72E1;
+    --accent-color: #B9E0FF;
+    --text-dark: #2D2727;
+    --text-light: #F5F5F5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-section {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    display: flex;          /* Добавляем flex-раскладку */
+    flex-direction: column; /* Элементы в колонку */
+    min-height: 200px;      /* Минимальная высота */
+}
+
+.order-items {
+    flex-grow: 1;           /* Занимает все доступное пространство */
+    margin-bottom: 1.5rem;  /* Отступ перед кнопкой */
+}
+
+
+.order-section:hover {
+    transform: translateY(-3px);
+}
+
+/* Заголовок заказа */
+.order-section h3 {
+    color: #2196F3; /* Синий цвет */
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem; /* Увеличиваем расстояние между карточками */
+    margin: 2rem 0;
+    padding: 0 1rem; /* Добавляем отступы по краям */
+}
+
+.item-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0.5rem; /* Добавляем внешние отступы */
+    transform-origin: center; /* Для правильной анимации */
+}
+
+.item-card:hover {
+    transform: scale(1.03); /* Заменяем translateY на scale */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    z-index: 1; /* Поднимаем карточку над соседями */
+}
+
+.item-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--secondary-color);
+}
+
+.item-card h3 {
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.item-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.price-tag {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.quantity-input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.add-to-cart-btn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--primary-color);
+    transform: scale(1.02);
+}
+
+/* Кнопка оплаты */
+.checkout-btn {
+    background: #2196F3; /* Синий цвет */
+    color: white !important; /* Белый текст */
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    align-self: flex-start; /* Выравниваем кнопку по левому краю */
+    margin-top: auto;       /* Прижимаем к низу контейнера */
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #1976D2; /* Темно-синий при наведении */
+}
+
+.category-header {
+    margin: 3rem 0 1.5rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--text-dark);
+    position: relative;
+    padding-left: 1rem;
+}
+
+.category-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
