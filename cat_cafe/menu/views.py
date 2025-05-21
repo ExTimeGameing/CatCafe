@@ -29,7 +29,7 @@ def checkout(request):
 
     # Обработка подтверждения заказа
     if request.method == "POST":
-        cat_id = request.POST.get('cat_id')
+        cat_id = request.POST.get("cat_id")
         order.save()
         payment_method = request.POST.get("payment_method")
 

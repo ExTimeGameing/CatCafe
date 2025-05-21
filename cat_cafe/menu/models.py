@@ -45,11 +45,11 @@ class Order(models.Model):
     comment = models.TextField(blank=True)
     items = models.ManyToManyField(MenuItem, through="OrderItem")
     cat = models.ForeignKey(
-        'Cat', 
-        on_delete=models.SET_NULL, 
-        null=True, 
+        "Cat",
+        on_delete=models.SET_NULL,
+        null=True,
         blank=True,
-        verbose_name='Кот-курьер'
+        verbose_name="Кот-курьер",
     )
 
     def get_total(self):
